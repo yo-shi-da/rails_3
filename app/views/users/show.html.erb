@@ -1,2 +1,7 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p>ログインに成功しました！！！</p>
+
+<h1><%= @user.name %>のページ</h1>
+<p>メールアドレス: <%= @user.email %></p>
+<p>画像: <%= @user.image %></p>
+
+<%= link_to '投稿一覧', posts_path, class:"btn btn-primary" %>

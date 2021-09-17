@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<h1>投稿詳細画面</h1>
+<h2>
+	内容：
+	<%= @post.content %>
+	画像：
+	<%= image_tag @post.image.url %>
+</h2>
+
+<%= link_to '戻る', posts_path %>

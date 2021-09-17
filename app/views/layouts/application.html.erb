@@ -4,12 +4,36 @@
     <title>Rails3</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <img src="/assets/Instagram.jpg" alt="">
+      <hr>
+    </header>
+
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+
+    <% if logged_in? %>
+      <%= link_to "登録内容", user_path(current_user.id) %>
+      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+    <% else %>
+      <%= link_to "新しく作る", new_user_path %>
+      <%= link_to "ログイン", new_session_path %>
+    <% end %>
+
+      <%= yield %>
+
+    <footer>    
+      <hr>
+      <img src="/assets/Instagram.jpg" alt="">
+    </footer>
+    
   </body>
 </html>
