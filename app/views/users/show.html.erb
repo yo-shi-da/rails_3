@@ -1,7 +1,6 @@
-<p>ログインに成功しました！！！</p>
-
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
-<p>画像: <%= @user.image %></p>
+<p>登録画像: <%= image_tag @user.image.url %></p>
 
 <%= link_to '投稿一覧', posts_path, class:"btn btn-primary" %>
+<%= link_to 'アカウント編集', edit_user_path, class:"btn btn-primary" %>

@@ -1,8 +1,20 @@
-<h1>ログイン</h1>
-<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+<h1>アカウント修正</h1>
+
+<%= form_with(model: @user, local: true) do |f| %>  
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
   <%= f.label :email %>
   <%= f.email_field :email %>
+  <br>
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <%= f.submit "ログインする" %>
+  <br>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <br>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <br>
+  <%= f.submit "アカウントを修正する" %>
 <% end %>
