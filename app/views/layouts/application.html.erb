@@ -14,6 +14,10 @@
     <header>
       <img src="/assets/Instagram.jpg" alt="">
       <hr>
+      <% if logged_in? %>
+        <h2>「<%= current_user.name %>」でログイン中</h2>
+      <% end %>      
+      <hr>
     </header>
 
     <% flash.each do |key, value| %>
@@ -21,11 +25,13 @@
     <% end %>
 
     <% if logged_in? %>
-      <%= link_to "アカウント内容確認", user_path(current_user.id) %>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <%= link_to "Profile", user_path(current_user.id), class:"btn btn-success"  %>
+      <%= link_to "お気に入り", favorites_path(current_user.id), class:"btn btn-success"  %>
+      <%= link_to "ログアウト", session_path(current_user.id), method: :delete, class:"btn btn-success"  %>
     <% else %>
-      <%= link_to "新しく作る", new_user_path %>
-      <%= link_to "ログイン", new_session_path %>
+      <%= link_to "新しく作る", new_user_path, class:"btn btn-success" %>
+      <%= link_to "ログイン", new_session_path, class:"btn btn-success" %>
+      <%= link_to "All Posts", posts_path, class:"btn btn-success"  %>
     <% end %>
 
       <%= yield %>

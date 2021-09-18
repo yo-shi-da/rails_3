@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:update, :destroy]
+  skip_before_action :login_required, only: [:index, :show]
 
   def index
-    @posts = current_user.posts
+    @posts = Post.all
   end
 
   def new
@@ -23,9 +24,16 @@ class PostsController < ApplicationController
   end
 
   def show
+    if logged_in?
+      @post = Post.find(params[:id])
+      @favorite = current_user.favorites.find_by(post_id: @post.id)
+    else
+      redirect_to posts_path, notice: "ログインしないと見れないよ？"
+    end
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
