@@ -10,11 +10,11 @@
     <td><%= post.content %></td>
     <td><%= post.user.name %></td>
 
-    <% if current_user.id == post.user_id %>
+    <% if logged_in? && current_user.id == post.user_id %>
       <td><%= link_to '詳細', post_path(post.id), class:"btn btn-secondary" %></td>
       <td><%= link_to "編集", edit_post_path(post.id), class:"btn btn-secondary" %></td>
       <td><%= link_to '削除', post_path(post.id), class:"btn btn-secondary", method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-    <% else %>
+    <% else%>
       <td><%= link_to '詳細', post_path(post.id), class:"btn btn-secondary" %></td>
     <% end %>
     

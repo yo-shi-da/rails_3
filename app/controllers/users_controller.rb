@@ -25,11 +25,15 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: 'アカウント内容を変更しました!!!'
+    if current_user == @user
+      if @user.update(user_params)
+        redirect_to user_path(@user.id), notice: 'アカウント内容を変更しました!!!'
+      else
+        render :edit
+      end
     else
-      render :edit
-    end
+      redirect_to edit_user_path(@user.id), notice: 'パスワードが間違っています!!!'
+    end      
   end
 
   private
