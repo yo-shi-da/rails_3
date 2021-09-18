@@ -11,8 +11,8 @@
   </head>
 
   <body>
+    <div class="image">
     <header>
-      <img src="/assets/Instagram.jpg" alt="">
       <hr>
       <% if logged_in? %>
         <h2>「<%= current_user.name %>」でログイン中</h2>
@@ -38,8 +38,7 @@
 
     <footer>    
       <hr>
-      <img src="/assets/Instagram.jpg" alt="">
     </footer>
-    
+    </div>
   </body>
 </html>
